@@ -24,6 +24,7 @@
     <ClInclude Include="quanbu.h" />
     <ClInclude Include="sanziqi.h" />
     <ClInclude Include="saolei.h" />
+    <ClInclude Include="zhuhanshu.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="guanli.cpp" />
@@ -31,6 +32,7 @@
     <ClCompile Include="sanziqi.cpp" />
     <ClCompile Include="saolei.cpp" />
     <ClCompile Include="test.cpp" />
+    <ClCompile Include="zhuhanshu.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

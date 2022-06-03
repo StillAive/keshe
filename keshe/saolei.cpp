@@ -149,6 +149,23 @@ void saolei::meun()
 }
 
 
+void saolei::game()
+{
+	char mine[ROWS][COLS] = { 0 };
+	char show[ROWS][COLS] = { 0 };
+
+	quyu(mine, ROWS, COLS, '0');
+	quyu(show, ROWS, COLS, '*');
+
+
+	buzhi(mine, ROW, COL);
+
+	xianshi(show, ROW, COL);
+
+	play(mine, show, ROW, COL);
+}
+
+
 void saolei::saoleilou()
 {
 
@@ -175,18 +192,3 @@ void saolei::saoleilou()
 	} while (xuanze);
 }
 
-void saolei::game()
-{
-	char mine[ROWS][COLS] = { 0 };
-	char show[ROWS][COLS] = { 0 };
-
-	quyu(mine, ROWS, COLS, '0');
-	quyu(show, ROWS, COLS, '*');
-
-
-	buzhi(mine, ROW, COL);
-
-	xianshi(show, ROW, COL);
-
-	play(mine, show, ROW, COL);
-}
