@@ -1,6 +1,5 @@
 #include"zhuhanshu.h"
 
-zhuhanshu x;
 //guanli y;
 //Contact z;
 //sanziqi a;
@@ -8,6 +7,8 @@ zhuhanshu x;
 
 int main()
 {
+	zhuhanshu x;
+
 	x.test();
 	return 0;
 }

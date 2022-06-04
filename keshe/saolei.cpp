@@ -34,7 +34,7 @@ void saolei::xianshi(char show[ROWS][COLS], int row, int col)
 		printf("%d ", i);
 		for (j = 1; j <= col; j++)
 		{
-			printf("%c ", show[i][j]);
+			printf("%c ", show[i][j]);//显示show数组里的图案
 		}
 		printf("\n");
 	}
@@ -42,7 +42,7 @@ void saolei::xianshi(char show[ROWS][COLS], int row, int col)
 }
 
 
-void saolei::buzhi(char mine[ROWS][COLS], int row, int col)
+void saolei::buzhi(char mine[ROWS][COLS], int row, int col)//改变一下mine数组中的字符
 {
 	int m = shuliang;
 	int x = 0;
@@ -79,7 +79,7 @@ void saolei::play(char mine[ROWS][COLS], char show[ROWS][COLS], int row, int col
 	int x = 0;
 	int y = 0;
 	int win = 0;
-	while (win < row * col - shuliang)
+	while (win < row * col - shuliang)//有row * col - shuliang个非雷空格
 	{
 		printf("请输入坐标：");
 		scanf("%d %d", &x, &y);
@@ -88,7 +88,7 @@ void saolei::play(char mine[ROWS][COLS], char show[ROWS][COLS], int row, int col
 			if (mine[x][y] == '1')
 			{
 				printf("死\n");
-				xianshi(mine, ROW, COL);
+				xianshi(mine, ROW, COL);//死的时候显示一下雷的布局
 				printf("游戏结束\n");
 				break;
 			}

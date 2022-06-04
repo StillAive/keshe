@@ -194,7 +194,7 @@ void guanli::remakeContact(Contact* pc)//修改游戏信息
 	}
 
 	printf("请输入新游戏序号：");
-	scanf("%d", pc->people[pow].xuhao);
+	scanf("%d", &pc->people[pow].xuhao);
 	printf("请输入新游戏名字：");
 	scanf("%s", pc->people[pow].gamename);
 	printf("请输入新游戏大小：");
