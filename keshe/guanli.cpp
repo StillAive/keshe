@@ -88,7 +88,7 @@ void guanli::addContact(Contact* pc)//添加游戏单
 	checkCapacity(pc);
 
 	printf("请输入新游戏序号：");
-	scanf("%s", pc->people[pc->sz].xuhao);
+	scanf("%d", &pc->people[pc->sz].xuhao);
 	printf("请输入新游戏名字：");
 	scanf("%s", pc->people[pc->sz].gamename);
 	printf("请输入新游戏大小：");
@@ -165,7 +165,7 @@ void guanli::searchContact(Contact* pc)//查找联系人
 	}
 
 	printf("该游戏为：");
-	printf("%-5s %-20s %-5s\n",
+	printf("%-5d %-20s %-5s\n",
 		pc->people[pow].xuhao,
 		pc->people[pow].gamename,
 		pc->people[pow].size);
@@ -194,7 +194,7 @@ void guanli::remakeContact(Contact* pc)//修改游戏信息
 	}
 
 	printf("请输入新游戏序号：");
-	scanf("%s", pc->people[pow].xuhao);
+	scanf("%d", pc->people[pow].xuhao);
 	printf("请输入新游戏名字：");
 	scanf("%s", pc->people[pow].gamename);
 	printf("请输入新游戏大小：");
@@ -214,7 +214,7 @@ void guanli::modifyContact(Contact* pc) //以名字排序所有游戏
 	{
 		for (int j = 0; j < pc->sz - 1 - i; j++)
 		{
-			if (strcmp(pc->people[j].gamename, pc->people[j + 1].gamename) > 0)
+			if (pc->people[j].xuhao - pc->people[j + 1].xuhao > 0)
 			{
 				tmp = pc->people[j];
 				pc->people[j] = pc->people[j + 1];
@@ -254,7 +254,7 @@ void guanli::printContact(Contact* pc)//打印游戏
 
 	for (int i = 0; i < pc->sz; i++)
 	{
-		printf("%-5s %-20s %-5s\n",
+		printf("%-5d %-20s %-5s\n",
 			pc->people[i].xuhao,
 			pc->people[i].gamename,
 			pc->people[i].size);

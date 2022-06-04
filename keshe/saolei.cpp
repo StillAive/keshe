@@ -160,7 +160,7 @@ void saolei::game()
 
 	buzhi(mine, ROW, COL);
 
-	xianshi(show, ROW, COL);
+	xianshi(show, ROW, COL);//改变调用的字符串数组可以选择直接显示雷区
 
 	play(mine, show, ROW, COL);
 }

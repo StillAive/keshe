@@ -1,11 +1,10 @@
-#pragma once
 #include"zhuhanshu.h"
 
 zhuhanshu x;
-guanli y;
-Contact z;
-sanziqi a;
-saolei w;
+//guanli y;
+//Contact z;
+//sanziqi a;
+//saolei w;
 
 int main()
 {

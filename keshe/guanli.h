@@ -24,7 +24,7 @@ enum Option
 typedef struct Peoinfo
 {
 
-	char xuhao[NAME_MAX];
+	int xuhao;
 	char gamename[NAME_MAX];
 	char size[MAX];
 }Peoinfo;

@@ -113,7 +113,7 @@ void zhuhanshu::test()
 						break;
 					default:
 						printf("Ñ¡Ôñ´íÎó\n");
-					Sleep(100);
+					Sleep(1000);
 						system("cls");
 						break;
 					}
