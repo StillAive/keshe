@@ -4,7 +4,7 @@
 #include"saolei.h"
 
 
-void saolei::quyu(char mine[ROWS][COLS], int rows, int cols, char n)
+void saolei::quyu(char mine[ROWS][COLS], int rows, int cols, char n)//储存rows×cols的字符n在二维数组中
 {
 	int i = 0;
 	int j = 0;
@@ -59,7 +59,7 @@ void saolei::buzhi(char mine[ROWS][COLS], int row, int col)
 	}
 }
 
-int zhouweilei(char mine[ROWS][COLS], int x, int y)
+int zhouweilei(char mine[ROWS][COLS], int x, int y)//周围雷的数量
 {
 
 	return mine[x - 1][y - 1] +
@@ -154,13 +154,13 @@ void saolei::game()
 	char mine[ROWS][COLS] = { 0 };
 	char show[ROWS][COLS] = { 0 };
 
-	quyu(mine, ROWS, COLS, '0');
-	quyu(show, ROWS, COLS, '*');
+	quyu(mine, ROWS, COLS, '0');//雷区
+	quyu(show, ROWS, COLS, '*');//覆盖区
 
 
-	buzhi(mine, ROW, COL);
+	buzhi(mine, ROW, COL);//改变雷区
 
-	xianshi(show, ROW, COL);//改变调用的字符串数组可以选择直接显示雷区
+	xianshi(show, ROW, COL);//改变调用的字符串数组可以选择直接显示雷区（show改成mine）
 
 	play(mine, show, ROW, COL);
 }
