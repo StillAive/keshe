@@ -21,7 +21,7 @@ sanziqi s;
 
 saolei l;
 
-void zhuhanshu::test()
+void zhuhanshu::test()//运行的逻辑的实现
 {
 	
 	p.caidan();
