@@ -12,7 +12,6 @@ void sanziqi::kongge(char a1[ROWq][COLq], int row, int col)
 		}
 	}
 }
-
 void sanziqi::QIPANG(char a1[ROWq][COLq], int row, int col)
 {
 	int i = 0;
@@ -42,7 +41,6 @@ void sanziqi::QIPANG(char a1[ROWq][COLq], int row, int col)
 		}
 	}
 }
-
 void sanziqi::wanjia(char a1[ROWq][COLq], int row, int col) 
 {
 	int x = 0;
@@ -70,7 +68,6 @@ void sanziqi::wanjia(char a1[ROWq][COLq], int row, int col)
 		}
 	}
 }
-
 void sanziqi::diannao(char a1[ROWq][COLq], int row, int col)
 {
 	int x = 0;
@@ -89,7 +86,6 @@ void sanziqi::diannao(char a1[ROWq][COLq], int row, int col)
 		}
 	}
 }
-
 static int pingju(char a1[ROWq][COLq], int row, int col)
 {
 	int i = 0;
@@ -106,8 +102,6 @@ static int pingju(char a1[ROWq][COLq], int row, int col)
 	}
 	return 0;
 }
-
-
 char sanziqi::shuying(char a1[ROWq][COLq], int row, int col)
 {
 	int i = 0;
@@ -145,40 +139,6 @@ char sanziqi::shuying(char a1[ROWq][COLq], int row, int col)
 	return 'c';
 
 }
-
-void sanziqi::meun()
-{
-	Sleep(5000);
-	char a1[] = "******** 1.  play *******";
-	char a2[] = "******** 0.  exit *******";
-	char a3[] = "########          #######";
-	char a4[] = "########          #######";
-	int left1 = 0;
-	int right1 = strlen(a1) - 1;
-	int left2 = 0;
-	int right2 = strlen(a2) - 1;
-	while (left1 < right1 && left2 < right2)
-	{
-		a3[left1] = a1[left1];
-		a3[right1] = a1[right1];
-		a4[left2] = a2[left2];
-		a4[right2] = a2[right2];
-
-		printf("%s\n", a3);
-		printf("%s\n", a4);
-
-		left1++;
-		right1--;
-		left2++;
-		right2--;
-
-		Sleep(100);
-		system("cls");
-	}
-	printf("%s\n", a3);
-	printf("%s\n", a4);
-}
-
 void sanziqi::game()
 {
 	char fu = 0;
@@ -232,8 +192,7 @@ void sanziqi::game()
 
 	QIPANG(braod, ROWq, COLq);
 }
-
-void sanziqi::caidan()
+void sanziqi::play()
 {
 
 	int xuanze = 0;
@@ -258,3 +217,41 @@ void sanziqi::caidan()
 		}
 	} while (xuanze);
 }
+
+
+
+void sanziqi::meun()
+{
+	Sleep(5000);
+	char a1[] = "******** 1.  play *******";
+	char a2[] = "******** 0.  exit *******";
+	char a3[] = "########          #######";
+	char a4[] = "########          #######";
+	int left1 = 0;
+	int right1 = strlen(a1) - 1;
+	int left2 = 0;
+	int right2 = strlen(a2) - 1;
+	while (left1 < right1 && left2 < right2)
+	{
+		a3[left1] = a1[left1];
+		a3[right1] = a1[right1];
+		a4[left2] = a2[left2];
+		a4[right2] = a2[right2];
+
+		printf("%s\n", a3);
+		printf("%s\n", a4);
+
+		left1++;
+		right1--;
+		left2++;
+		right2--;
+
+		Sleep(100);
+		system("cls");
+	}
+	printf("%s\n", a3);
+	printf("%s\n", a4);
+}
+
+
+

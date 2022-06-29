@@ -1,24 +1,11 @@
 #include"guanli.h"
 
-void guanli::menu()//菜单
-{
 
-	printf("--------------管理者页面------------\n");
-	printf("------------------------------------\n");
-	printf("-------1.加游戏       2.删游戏------\n");
-	printf("-------3.找游戏       4.修改游戏----\n");
-	printf("-------5.游戏排序     6.清空游戏----\n");
-	printf("-------7.游戏展示     0.退出--------\n");
-	printf("------------------------------------\n");
-	printf("------------------------------------\n");
-}
-
-void  guanli::checkCapacity(Contact* pc)
+void  guanli::checkCapacity(Game* pc)
 {
-	//动态版本
 	if (pc->sz == pc->capacity)
 	{
-		Peoinfo* tmp = (Peoinfo*)realloc(pc->people, (pc->capacity + 2) * sizeof(Peoinfo));
+		Gameinfo* tmp = (Gameinfo*)realloc(pc->people, (pc->capacity + 2) * sizeof(Gameinfo));
 		if (tmp != NULL)
 		{
 			pc->people = tmp;
@@ -27,20 +14,17 @@ void  guanli::checkCapacity(Contact* pc)
 		printf("增容成功！\n");
 	}
 }
-
-
-
-void  guanli::loadContact(Contact* pc)
+void  guanli::loadGame(Game* pc)
 {
-	FILE* pf = fopen("contact.dat", "rb");
+	FILE* pf = fopen("contact.txt", "rb");
 	if (pf == NULL)
 	{
-		perror("loadContact::fopen");
+		perror("loadGame::fopen");
 		return;
 	}
 
-	Peoinfo tmp = { 0 };
-	while (fread(&tmp, sizeof(Peoinfo), 1, pf))
+	Gameinfo tmp = { 0 };
+	while (fread(&tmp, sizeof(Gameinfo), 1, pf))
 	{
 		checkCapacity(pc);
 		pc->people[pc->sz] = tmp;
@@ -50,41 +34,58 @@ void  guanli::loadContact(Contact* pc)
 	fclose(pf);
 	pf = NULL;
 }
+void guanli::saveGame(const Game* pc)
+{
+	FILE* pf = fopen("contact.txt", "wb");
+	if (pf == NULL)
+	{
+		perror("saveGame::fopen");
+		return;
+	}
+	int i = 0;
+	for (int i = 0; i < pc->sz; i++)
+	{
+		fwrite(pc->people + i, sizeof(Gameinfo), 1, pf); //将创建一个名为 contact.dat 的文件，并将缓冲区的内容存储到其中。缓冲区包含 Gameinfo 元素，但它可以包含任何其他类型。
+														 //每次写一个，写pc->sz个
+	}
 
-
-void guanli::inContact(Contact* pc)//初始化游戏单
+	fclose(pf);
+	pf = NULL;
+}
+void guanli::inGame(Game* pc)//初始化游戏单元
 {
 	assert(pc);
 	pc->sz = 0;
 	pc->capacity = DEFAULT_SZ;
-	pc->people = (Peoinfo*)malloc(pc->capacity * sizeof(Peoinfo));
+	pc->people = (Gameinfo*)malloc(pc->capacity * sizeof(Gameinfo));
 
 	if (pc->people == NULL)
 	{
 		perror("initContact::malloc");
 		return;
 	}
-	memset(pc->people, 0, pc->capacity * sizeof(Peoinfo));
+	memset(pc->people, 0, pc->capacity * sizeof(Gameinfo));
 
-	loadContact(pc);
+	loadGame(pc);
+}//ljm
+//50
+
+
+void guanli::menu()//菜单
+{
+
+	printf("-----------管理游戏信息页面---------\n");
+	printf("------------------------------------\n");
+	printf("-------1.加游戏       2.删游戏------\n");
+	printf("-------3.找游戏       4.修改游戏----\n");
+	printf("-------5.游戏排序     6.清空游戏----\n");
+	printf("-------7.游戏展示     0.退出--------\n");
+	printf("------------------------------------\n");
+	printf("------------------------------------\n");
 }
-
-
-
-
-
-
-void guanli::addContact(Contact* pc)//添加游戏单
+void guanli::addGame(Game* pc)//添加游戏单元
 {
 	assert(pc);
-
-	//静态版本
-	/*if (pc->sz == MAX)
-	{
-		printf("游戏已满\n");
-		return;
-	}*/
-
 	checkCapacity(pc);
 
 	printf("请输入新游戏序号：");
@@ -95,10 +96,8 @@ void guanli::addContact(Contact* pc)//添加游戏单
 	scanf("%s", pc->people[pc->sz].size);
 	pc->sz++;
 	printf("加入成功！\n");
-}
-
-
-int FindByName(const Contact* pc, char name[])
+}//xwh
+int FindByName(const Game* pc, char name[])
 {
 	assert(pc);
 	for (int i = 0; i < pc->sz; i++)
@@ -110,9 +109,7 @@ int FindByName(const Contact* pc, char name[])
 	}
 	return -1;
 }
-
-
-void guanli::delContact(Contact* pc)//删除游戏
+void guanli::delGame(Game* pc)//删除游戏
 {
 	assert(pc);
 
@@ -127,7 +124,6 @@ void guanli::delContact(Contact* pc)//删除游戏
 	scanf("%s", name);
 	int pow = FindByName(pc, name);
 
-
 	if (-1 == FindByName(pc, name))
 	{
 		printf("未找到该游戏\n");
@@ -141,8 +137,7 @@ void guanli::delContact(Contact* pc)//删除游戏
 	pc->sz--;
 	printf("删除成功!\n");
 }
-
-void guanli::searchContact(Contact* pc)//查找联系人
+void guanli::searchGame(Game* pc)//查找游戏
 {
 	assert(pc);
 
@@ -157,7 +152,6 @@ void guanli::searchContact(Contact* pc)//查找联系人
 	scanf("%s", name);
 	int pow = FindByName(pc, name);
 
-
 	if (-1 == FindByName(pc, name))
 	{
 		printf("未找到该游戏\n");
@@ -170,8 +164,7 @@ void guanli::searchContact(Contact* pc)//查找联系人
 		pc->people[pow].gamename,
 		pc->people[pow].size);
 }
-
-void guanli::remakeContact(Contact* pc)//修改游戏信息
+void guanli::remakeGame(Game* pc)//修改游戏信息
 {
 	assert(pc);
 
@@ -205,11 +198,13 @@ void guanli::remakeContact(Contact* pc)//修改游戏信息
 	printf("修改成功！\n");
 
 }
+//110
 
-void guanli::modifyContact(Contact* pc) //以名字排序所有游戏
+
+void guanli::modifyGame(Game* pc) //以名字排序所有游戏
 {
 	assert(pc);
-	Peoinfo tmp;
+	Gameinfo tmp;
 	for (int i = 0; i < pc->sz - 1; i++)
 	{
 		for (int j = 0; j < pc->sz - 1 - i; j++)
@@ -225,8 +220,7 @@ void guanli::modifyContact(Contact* pc) //以名字排序所有游戏
 
 	printf("调整成功！\n");
 }
-
-void guanli::sortContact(Contact* pc)//清空所有游戏
+void guanli::clearGame(Game* pc)//清空所有游戏
 {
 	assert(pc);
 	pc->sz = 0;
@@ -234,8 +228,7 @@ void guanli::sortContact(Contact* pc)//清空所有游戏
 
 	printf("清空成功！\n");
 }
-
-void guanli::printContact(Contact* pc)//打印游戏
+void guanli::printGame(Game* pc)//打印游戏
 {
 	assert(pc);
 
@@ -262,22 +255,6 @@ void guanli::printContact(Contact* pc)//打印游戏
 
 	printf("共%d款游戏\n", pc->sz);
 }
+//30
 
-void guanli::savecontact(const Contact* pc)
-{
-	FILE* pf = fopen("contact.dat", "wb");
-	if (pf == NULL)
-	{
-		perror("savecontact::fopen");
-		return;
-	}
-	int i = 0;
-	for (int i = 0; i < pc->sz; i++)
-	{
-		fwrite(pc->people + i, sizeof(Peoinfo), 1, pf);
-	}
-
-	fclose(pf);
-	pf = NULL;
-}
 

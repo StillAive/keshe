@@ -1,14 +1,10 @@
 #include"zhuhanshu.h"
 
-//guanli y;
-//Contact z;
-//sanziqi a;
-//saolei w;
 
 int main()
 {
 	zhuhanshu x;
-
+	system("color 70");
 	x.test();
 	return 0;
 }

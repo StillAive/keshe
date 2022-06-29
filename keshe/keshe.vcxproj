@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="doplayer.h" />
     <ClInclude Include="guanli.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="quanbu.h" />
@@ -27,6 +28,7 @@
     <ClInclude Include="zhuhanshu.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="doplayer.cpp" />
     <ClCompile Include="guanli.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="sanziqi.cpp" />

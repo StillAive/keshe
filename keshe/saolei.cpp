@@ -114,7 +114,6 @@ void saolei::play(char mine[ROWS][COLS], char show[ROWS][COLS], int row, int col
 }
 
 
-
 void saolei::meun()
 {
 	Sleep(5000);
